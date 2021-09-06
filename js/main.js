@@ -1,4 +1,3 @@
-
 // VARIABLES
 
 // default rate
