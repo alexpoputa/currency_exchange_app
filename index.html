@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/currency-flags.css">
+    <title>Currency Exchange</title>
+</head>
+<body>
+
+    <!-- Main page -->
+    <div class="container">
+        <h1 class="main-title"><strong>Currency Exchange</strong></h1>
+        <p class="current-date"></p>
+
+        <div class="currency-container">
+            
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn-primary currency-btn">Add Currency</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-container">
+        <div class="modal-overlay"></div>
+        <div class="currency-modal"></div>
+        <button class="btn-primary add-btn">Add Currency</button>
+    </div>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/data/rates.js"></script>
+    <script src="./js/data/currencyIcons.js"></script>
+    <script src="./js/data/symbolsObj.js"></script>
+</body>
+</html>
