@@ -146,6 +146,11 @@ body::-webkit-scrollbar-thumb:hover,
   font-size: 1.2em;
   font-weight: 500;
   width: 100%;
+  pointer-events: none;
+}
+
+.container .currency-container .currency-card.active .currency-col1 .currency-input {
+  pointer-events: initial;
 }
 
 .container .currency-container .currency-card .currency-col2 {

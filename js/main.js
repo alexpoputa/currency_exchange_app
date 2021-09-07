@@ -64,8 +64,7 @@ const createElementWithClass = (type, className) => {
 }
 
 
-
-// MODAL
+////// MODAL //////
 
 // populate modal with currency cards of each country available
 const populateModal = () => {
@@ -119,6 +118,7 @@ const activeModal = () => {
 
 // for each active modal card add its currency abbreviation to selectedCurrencies array 
 const addAbv = () => {
+    selectedCurrencies.push("EUR - Euro");
     Array.from(modalCard).forEach(card => {
         if(card.classList.contains("active")){
             const abv = card.querySelector(".modal-abv");
@@ -127,10 +127,7 @@ const addAbv = () => {
     })
 }
 
-
-
-
-// MAIN PAGE
+/////// MAIN PAGE ////////
 
 // create cards for each abbreviation element in the selectedCurrencies array
 // and set the value of each card to correspond with its currency
@@ -150,7 +147,11 @@ const createCard = () => {
         const abvP = createElementWithClass("p", "currency-abv");
         const currencyConversion = createElementWithClass("p", "currency-conversion");
 
-        removeBtn.innerHTML = "X";
+        if(lowerAbv == "eur"){
+            removeBtn.innerHTML = "";
+        }else {
+            removeBtn.innerHTML = "X";
+        }
         currencyIcon.innerHTML = currencyIcons[abv];
         cInput.setAttribute("type","text");
         cInput.setAttribute("value","0");
@@ -196,24 +197,13 @@ const removeCard = () => {
     })
 }
 
-// set currency card active
+// set EUR conversion card as active
 const setActive = () => {
     Array.from(currencyCard).forEach(card => {
-        card.addEventListener("click", function(){
-
-            Array.from(currencyCard).forEach((el) => el.classList.remove('active'));
-            
-            if(!this.classList.contains("active")){
-                this.classList.add("active");
-                activeAbv = this.querySelector(".abv").innerHTML;
-                // base = activeAbv;
-                // fetchRates(base);
-                // setConversion();
-            }else if(this.classList.contains("active")){
-                this.classList.remove("active");
-            }
-            
-        })
+        const cardIcon = card.querySelector(".currency-icon").innerHTML;
+        if(cardIcon == "€"){
+            card.classList.add("active");
+        }
     })
 }
 
@@ -224,8 +214,14 @@ const onInputChange = () => {
     Array.from(currencyCard).forEach(card => {
         card.addEventListener("click", function(){
             const input = card.querySelector(".currency-input");
+            const currInput = this.querySelector(".currency-input");
 
-            clearInputs();
+            if(card.classList.contains("active")){
+                currInput.value = '';
+                currInput.setAttribute("value", '');
+                currInput.focus();
+                updateInputs(0);
+            }
 
             input.addEventListener("keyup", function(){
                 activeInputValue = this.value;
@@ -253,17 +249,6 @@ const updateInputs = (activeInputVal) => {
         if(!card.classList.contains("active")){
             input.value = new Intl.NumberFormat().format(activeInputVal * convNum);
             input.setAttribute("value", new Intl.NumberFormat().format(activeInputVal * convNum));
-        }
-    })
-}
-
-// on input click, clear its value
-const clearInputs = () => {
-    Array.from(currencyCard).forEach(card => {
-        const input = card.querySelector(".currency-input");
-        if(card.classList.contains("active")){
-            input.value = '';
-            input.setAttribute("value", '');
         }
     })
 }

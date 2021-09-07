@@ -45,7 +45,6 @@ symbolsObj = {
     'EGP': "Egyptian Pound",
     'ERN': "Eritrean Nakfa",
     'ETB': "Ethiopian Birr",
-    'EUR': "Euro",
     'FJD': "Fijian Dollar",
     'FKP': "Falkland Islands Pound",
     'GBP': "British Pound Sterling",
